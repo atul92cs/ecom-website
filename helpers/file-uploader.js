@@ -14,7 +14,7 @@ cloudinary.config({
 const storage=new CloudinaryStorage({
     cloudinary:cloudinary,
     params:{
-        folder:"ecom",
+        folder:"ecomuser",
         public_id:(req,file)=>file.filename,
     },
 });
