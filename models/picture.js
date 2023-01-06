@@ -1,24 +1,22 @@
 const{Sequelize,DataTypes}=require('sequelize');
 const sequelize=require('../config/database');
-let Order=sequelize.define('order',{
+const Product=require('./product');
+const Picture=sequelize.define('product_picture',{
     id:{
         type:DataTypes.INTEGER,
+        primaryKey:true,
         autoIncrement:true,
-        allowNull:false,
-        primaryKey:true
+        allowNull:true
     },
-    cost:{
+    path:{
         type:DataTypes.STRING,
         allowNull:false
     },
-    status:{
-        type:DataTypes.STRING,
-        allowNull:false
-    },
-    user:{
+    productId:{
         type:DataTypes.INTEGER,
         allowNull:false
     }
 });
-
-module.exports=Order;
+Product.hasMany(Picture,{foreignKey:'productId'});
+Picture.belongsTo(Product,{foreignKey:'productId'});
+module.exports=Picture;
