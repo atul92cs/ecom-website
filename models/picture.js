@@ -1,27 +1,22 @@
 const{Sequelize,DataTypes}=require('sequelize');
 const sequelize=require('../config/database');
-const User=sequelize.define('user',{
+const Product=require('./product');
+const Picture=sequelize.define('product_picture',{
     id:{
         type:DataTypes.INTEGER,
-        autoIncrement:true,
         primaryKey:true,
+        autoIncrement:true,
+        allowNull:true
+    },
+    path:{
+        type:DataTypes.STRING,
         allowNull:false
     },
-    email:{
-        type:DataTypes.TEXT,
-        allowNull:true
-    },
-    mobile:{
-        type:DataTypes.STRING,
-        allowNull:true
-    },
-    password:{
-        type:DataTypes.STRING,
-        allowNull:true
-    },
-    user_type:{
+    productId:{
         type:DataTypes.INTEGER,
         allowNull:false
     }
 });
-module.exports=User;
+Product.hasMany(Picture,{foreignKey:'productId'});
+Picture.belongsTo(Product,{foreignKey:'productId'});
+module.exports=Picture;

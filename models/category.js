@@ -1,24 +1,15 @@
 const{Sequelize,DataTypes}=require('sequelize');
 const sequelize=require('../config/database');
-let Order=sequelize.define('order',{
+const Category=sequelize.define('category',{
     id:{
         type:DataTypes.INTEGER,
         autoIncrement:true,
-        allowNull:false,
-        primaryKey:true
-    },
-    cost:{
-        type:DataTypes.STRING,
+        primaryKey:true,
         allowNull:false
     },
-    status:{
+    name:{
         type:DataTypes.STRING,
-        allowNull:false
-    },
-    user:{
-        type:DataTypes.INTEGER,
         allowNull:false
     }
 });
-
-module.exports=Order;
+module.exports=Category;

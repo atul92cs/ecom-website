@@ -1,24 +1,22 @@
 const{Sequelize,DataTypes}=require('sequelize');
 const sequelize=require('../config/database');
-let Order=sequelize.define('order',{
+const Category=require('./category');
+const Subcategory=sequelize.define('subcategory',{
     id:{
         type:DataTypes.INTEGER,
-        autoIncrement:true,
         allowNull:false,
+        autoIncrement:true,
         primaryKey:true
     },
-    cost:{
+    name:{
         type:DataTypes.STRING,
         allowNull:false
     },
-    status:{
-        type:DataTypes.STRING,
-        allowNull:false
-    },
-    user:{
+    categoryId:{
         type:DataTypes.INTEGER,
         allowNull:false
     }
 });
-
-module.exports=Order;
+Category.hasMany(Subcategory,{foreignKey:'categoryId'});
+Subcategory.belongsTo(Category,{foreignKey:'categroyId'});
+module.exports=Subcategory;
