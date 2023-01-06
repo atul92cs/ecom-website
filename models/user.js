@@ -19,7 +19,7 @@ const User=sequelize.define('user',{
         type:DataTypes.STRING,
         allowNull:true
     },
-    usertype:{
+    user_type:{
         type:DataTypes.INTEGER,
         allowNull:false
     }

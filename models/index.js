@@ -7,6 +7,7 @@ const Cart=require('./cart');
 const Dimension=require('./dimension');
 const Picture=require('./picture');
 const User=require('./user');
+const UserType=require('./usertype');
 const sequelize=require('../config/database');
 module.exports={
     Category,
@@ -17,7 +18,8 @@ module.exports={
     OrderDetails,
     Dimension,
     Picture,
-    User
+    User,
+    UserType
 }
 sequelize.sync({alter:true}).then((result)=>{
     
