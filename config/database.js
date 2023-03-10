@@ -1,4 +1,4 @@
-require('dotenv').config({path:'../.env'});
+require('dotenv').config();
 
 const {Sequelize, Model}=require('sequelize');
 const sequelize=new Sequelize(process.env.SCHEMA,process.env.USER,process.env.PASSWORD,{
