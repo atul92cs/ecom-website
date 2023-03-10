@@ -28,6 +28,4 @@ const OrderDetails=sequelize.define('orderdetail',{
 });
 Order.hasMany(OrderDetails,{foreignKey:'orderid'});
 OrderDetails.belongsTo(Order,{foreignKey:'orderid'});
-OrderDetails.hasMany(Product,{foreignKey:'productid'});
-Product.belongsTo(OrderDetails,{foreignKey:'productid'});
 module.exports=OrderDetails;

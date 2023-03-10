@@ -1,4 +1,3 @@
-let {Product,Cart}=require('../models');
 let {generateCondition}=require('../helpers/conditionbuilder');
 
 addtoCart=(req,res)=>{

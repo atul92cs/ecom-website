@@ -1,45 +1,27 @@
-let {Product,Picture,Category,Subcategory}=require('../models');
-let {generateCondition}=require('../helpers/conditionbuilder');
-let {Op}=require('sequelize');
+let axios=require('axios');
+let {cmsapi}=require('../config');
+
 getProducts=async(req,res)=>{
-    let products;
-    if(req.query)
+   
+    let producturl=cmsapi+'product';
+    
+    let {filter}=req.query;
+    if(!filter)
     {
-        condition=generateCondition(req);
-        products=await Product.findAll({
-            where:{
-                [Op.or]:condition
-            },
-            include:[
-               {
-                   model:Picture
-               },
-               {
-                   model:Category
-               },
-               {
-                   model:Subcategory
-               }
-            ]
-       });
+        let data=await axios.get(producturl,{timeout: 5000});
+        let{data:{products}}=data;
+        return res.status(200).json({
+            products:products
+        });
     }
     else
     {
-        products=await Product.findAll({
-            include:[
-               {
-                   model:Picture
-               },
-               {
-                   model:Category
-               },
-               {
-                   model:Subcategory
-               }
-            ]
-       });
+        producturl=producturl+filter;
+        let data=await axios.get(producturl);
+        let {data:{products}}=data;
+        return res.status(200).json({
+            products:products
+        });
     }
-    
-    return products;
 }
 module.exports={getProducts};
