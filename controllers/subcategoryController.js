@@ -15,7 +15,7 @@ getSubcategory=async(req,res)=>{
     }
     else
     {
-        subcaturl=subcaturl+filter;
+        subcaturl=subcaturl+req.query;
         let data=await axios.get({
             url:subcaturl,
             method:'get'

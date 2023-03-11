@@ -16,7 +16,7 @@ getProducts=async(req,res)=>{
     }
     else
     {
-        producturl=producturl+filter;
+        producturl=producturl+req.query;
         let data=await axios.get(producturl);
         let {data:{products}}=data;
         return res.status(200).json({
